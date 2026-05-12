@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "prometheus-agent.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "prometheus-agent.labels" . | nindent 4 }}
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: {{ .Values.config.globalScrapeInterval }}
+      scrape_timeout: {{ .Values.config.globalScrapeTimeout }}
+      evaluation_interval: {{ .Values.config.evaluationInterval }}
+
+    remote_write:
+      {{- toYaml .Values.config.remoteWrite | nindent 6 }}
+
+    scrape_configs:
+      {{- toYaml .Values.config.scrapeConfigs | nindent 6 }}

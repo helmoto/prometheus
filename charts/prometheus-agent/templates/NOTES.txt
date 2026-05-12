@@ -1,0 +1,21 @@
+1. Prometheus Agent has been deployed in agent mode (--enable-feature=agent).
+   WAL data is stored at /prometheus/wal inside the pod.
+
+2. Verify the agent is running:
+   kubectl get pods -n {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "prometheus-agent.name" . }}"
+
+3. Check agent logs:
+   kubectl logs -n {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "prometheus-agent.name" . }}" -f
+
+4. Port-forward to inspect the UI (agent mode has a limited UI):
+   kubectl port-forward -n {{ .Release.Namespace }} svc/{{ include "prometheus-agent.fullname" . }} 9090:9090
+
+5. IMPORTANT: Make sure your remote_write endpoint is reachable from the cluster.
+   Current remote_write target(s):
+   {{- range .Values.config.remoteWrite }}
+   - {{ .url }}
+   {{- end }}
+
+6. To reload the configuration without restarting:
+   curl -X POST http://localhost:9090/-/reload
+   (requires --web.enable-lifecycle, which is enabled by default in this chart)
