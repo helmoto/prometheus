@@ -10,9 +10,9 @@ name: ""
 qualifier: ""
 
 agent:
-  globalScrapeInterval: 60s
-  globalScrapeTimeout: 10s
-  evaluationInterval: 60s
+  interval: 60s
+  timeout: 10s
+  evaluation: 60s
 
   remotes:
     - url: "http://prometheus-remote-write:9090/api/v1/write"

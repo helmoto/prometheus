@@ -8,16 +8,18 @@ metadata:
 data:
   prometheus.yml: |
     global:
-      scrape_interval: {{ .Values.agent.globalScrapeInterval }}
-      scrape_timeout: {{ .Values.agent.globalScrapeTimeout }}
-      evaluation_interval: {{ .Values.agent.evaluationInterval }}
+      scrape_interval: {{ .Values.agent.interval }}
+      scrape_timeout: {{ .Values.agent.timeout }}
+      evaluation_interval: {{ .Values.agent.evaluation }}
 
     remote_write:
       {{- range .Values.agent.remotes }}
       - url: {{ .url }}
+        {{- if .basic }}
         basic_auth:
           username: {{ .Values.agent.remotes.basic.username }}
           password: {{.Values.agent.remotes.basic.password }}
+        {{ end }}
       {{- end }}
 
     scrape_configs:
