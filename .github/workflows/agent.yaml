@@ -35,9 +35,14 @@ jobs:
         uses: helm/chart-releaser-action@v1.7.0
         with:
           charts_dir: .
-          branch: ""
+          branch: gh-pages
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: 切换并提取最新的编译成果
+        run: |
+          git fetch origin gh-pages
+          git checkout origin/gh-pages -- index.yaml || echo "首次运行，index.yaml 还不存在"
 
       - name: 上传
         uses: actions/upload-pages-artifact@v3
