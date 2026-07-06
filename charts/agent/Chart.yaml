@@ -2,7 +2,7 @@ apiVersion: v2
 name: prometheus-agent
 description: A Helm chart for deploying Prometheus in Agent mode (--enable-feature=agent)
 type: application
-version: 0.0.1
+version: 0.0.2
 appVersion: "v3.4.1"
 keywords:
   - prometheus
