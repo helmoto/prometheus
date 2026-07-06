@@ -47,7 +47,7 @@ jobs:
       - name: 上传
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.cr-index
+          path: "."
 
       - name: 部署
         uses: actions/deploy-pages@v4
