@@ -9,12 +9,12 @@ secrets: []
 name: ""
 qualifier: ""
 
-config:
+agent:
   globalScrapeInterval: 60s
   globalScrapeTimeout: 10s
   evaluationInterval: 60s
 
-  remote:
+  remotes:
     - url: "http://prometheus-remote-write:9090/api/v1/write"
       basic:
         username: ""

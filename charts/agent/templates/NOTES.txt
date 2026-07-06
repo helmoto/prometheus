@@ -12,7 +12,7 @@
 
 5. IMPORTANT: Make sure your remote_write endpoint is reachable from the cluster.
    Current remote_write target(s):
-   {{- range .Values.config.remote }}
+   {{- range .Values.agent.remotes }}
    - {{ .url }}
    {{- end }}
 
