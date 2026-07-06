@@ -16,6 +16,10 @@ config:
 
   remote:
     - url: "http://prometheus-remote-write:9090/api/v1/write"
+      basic:
+        username: ""
+        password: ""
+
   scrape:
     - job_name: "kubernetes-apiservers"
       kubernetes_sd_configs:

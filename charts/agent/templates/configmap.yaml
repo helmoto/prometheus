@@ -13,7 +13,10 @@ data:
       evaluation_interval: {{ .Values.config.evaluationInterval }}
 
     remote_write:
-      {{- toYaml .Values.config.remote | nindent 6 }}
+      - url: {{- .Values.config.remote }}
+        basic_auth:
+          username: {{- .Values.config.basic.username }}
+          password: {{- .Values.config.basic.password }}
 
     scrape_configs:
       {{- toYaml .Values.config.scrape | nindent 6 }}
