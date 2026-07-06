@@ -1,8 +1,8 @@
 apiVersion: v2
-name: prometheus-agent
-description: A Helm chart for deploying Prometheus in Agent mode (--enable-feature=agent)
+name: agent
+description: 使用Agent模式的图纸
 type: application
-version: 0.0.2
+version: 0.0.3
 appVersion: "v3.4.1"
 keywords:
   - prometheus
@@ -13,5 +13,5 @@ home: https://prometheus.io
 sources:
   - https://github.com/prometheus/prometheus
 maintainers:
-  - name: platform-team
-    email: platform@example.com
+  - name: storezhang
+    email: storezhang@qq.com
