@@ -8,6 +8,7 @@ image:
 secrets: []
 name: ""
 qualifier: ""
+cluster: "default"
 
 agent:
   interval: 60s
