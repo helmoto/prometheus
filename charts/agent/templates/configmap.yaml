@@ -13,7 +13,7 @@ data:
       evaluation_interval: {{ .Values.config.evaluationInterval }}
 
     remote_write:
-      {{- toYaml .Values.config.remoteWrite | nindent 6 }}
+      {{- toYaml .Values.config.remote | nindent 6 }}
 
     scrape_configs:
-      {{- toYaml .Values.config.scrapeConfigs | nindent 6 }}
+      {{- toYaml .Values.config.scrape | nindent 6 }}

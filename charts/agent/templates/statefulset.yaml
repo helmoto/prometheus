@@ -18,16 +18,16 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-        {{- with .Values.podAnnotations }}
+        {{- with .Values.annotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
         {{- include "prometheus-agent.selectorLabels" . | nindent 8 }}
-        {{- with .Values.podLabels }}
+        {{- with .Values.labels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.secrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -46,7 +46,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ include "prometheus-agent.imageTag" . }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.policy }}
           args:
             - "--agent"
             - "--config.file=/etc/prometheus/prometheus.yml"
@@ -64,18 +64,20 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- if .Values.probe.liveness.enabled }}
           livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
+            {{- omit .Values.probe.liveness "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          {{- if .Values.probe.readiness.enabled }}
           readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- omit .Values.probe.readiness "enabled" | toYaml | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /etc/prometheus
             - name: wal
               mountPath: /prometheus/wal
-            {{- with .Values.extraVolumeMounts }}
+            {{- with .Values.mounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
       volumes:
@@ -86,10 +88,10 @@ spec:
         - name: wal
           emptyDir: {}
         {{- end }}
-        {{- with .Values.extraVolumes }}
+        {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- with .Values.nodeSelector }}
+      {{- with .Values.selector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}

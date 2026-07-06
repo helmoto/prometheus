@@ -2,17 +2,17 @@
 Expand the name of the chart.
 */}}
 {{- define "prometheus-agent.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- default .Chart.Name .Values.name | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
 {{- define "prometheus-agent.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- if .Values.qualifier }}
+{{- .Values.qualifier | trunc 63 | trimSuffix "-" }}
 {{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- $name := default .Chart.Name .Values.name }}
 {{- if contains $name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -52,10 +52,10 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 ServiceAccount name.
 */}}
 {{- define "prometheus-agent.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "prometheus-agent.fullname" .) .Values.serviceAccount.name }}
+{{- if .Values.account.create }}
+{{- default (include "prometheus-agent.fullname" .) .Values.account.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+{{- default "default" .Values.account.name }}
 {{- end }}
 {{- end }}
 
