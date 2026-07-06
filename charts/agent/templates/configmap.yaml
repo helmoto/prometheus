@@ -17,8 +17,8 @@ data:
       - url: {{ .url }}
         {{- if .basic }}
         basic_auth:
-          username: {{ .Values.agent.remotes.basic.username }}
-          password: {{.Values.agent.remotes.basic.password }}
+          username: {{ .basic.username }}
+          password: {{ .basic.password }}
         {{ end }}
       {{- end }}
 
