@@ -14,6 +14,7 @@ rules:
       - services
       - endpoints
       - pods
+      - secrets
     verbs: ["get", "list", "watch"]
   - apiGroups: ["extensions", "networking.k8s.io"]
     resources:

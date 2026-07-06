@@ -2,7 +2,7 @@ apiVersion: v2
 name: agent
 description: 使用Agent模式的图纸
 type: application
-version: 0.0.6
+version: 0.0.7
 appVersion: "v3.4.1"
 keywords:
   - prometheus
