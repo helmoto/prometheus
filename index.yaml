@@ -3,6 +3,27 @@ entries:
   agent:
   - apiVersion: v2
     appVersion: v3.4.1
+    created: "2026-07-06T04:11:54.549626619Z"
+    description: 使用Agent模式的图纸
+    digest: 01ca9ef88289792620e44444214b6920e08d735bfcec77de19469d088ab7a46c
+    home: https://prometheus.io
+    keywords:
+    - prometheus
+    - monitoring
+    - metrics
+    - agent
+    maintainers:
+    - email: storezhang@qq.com
+      name: storezhang
+    name: agent
+    sources:
+    - https://github.com/prometheus/prometheus
+    type: application
+    urls:
+    - https://github.com/helmoto/prometheus/releases/download/agent-0.0.8/agent-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
+    appVersion: v3.4.1
     created: "2026-07-06T03:47:38.483425504Z"
     description: 使用Agent模式的图纸
     digest: 2e1bafcae6b6998faa2e4187af500b0371186175ade30a677c1a0d3c6c0ae1dd
@@ -64,4 +85,4 @@ entries:
     urls:
     - https://github.com/helmoto/prometheus/releases/download/agent-0.0.5/agent-0.0.5.tgz
     version: 0.0.5
-generated: "2026-07-06T03:47:38.483443257Z"
+generated: "2026-07-06T04:11:54.549644924Z"
