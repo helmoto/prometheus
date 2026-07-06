@@ -42,9 +42,9 @@ jobs:
           git checkout origin/gh-pages -- index.yaml || echo "首次运行，index.yaml 还不存在"
 
       - name: 上传
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "."
 
       - name: 部署
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
