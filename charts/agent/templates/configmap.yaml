@@ -12,7 +12,7 @@ data:
       scrape_timeout: {{ .Values.agent.timeout }}
       evaluation_interval: {{ .Values.agent.evaluation }}
       external_labels:
-        cluster: {{- .Values.cluster }}
+        cluster: {{ .Values.cluster }}
 
     remote_write:
       {{- range .Values.agent.remotes }}
