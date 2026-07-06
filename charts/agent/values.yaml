@@ -172,7 +172,7 @@ autoscale:
 
 budget:
   enabled: false
-  minAvailable: 1
+  min: 1
 
 network:
   enabled: false
@@ -180,5 +180,5 @@ network:
 monitor:
   enabled: false
   interval: 30s
-  scrapeTimeout: 10s
+  timeout: 10s
   labels: {}

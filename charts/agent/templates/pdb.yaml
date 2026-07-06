@@ -7,7 +7,7 @@ metadata:
   labels:
     {{- include "prometheus-agent.labels" . | nindent 4 }}
 spec:
-  minAvailable: {{ .Values.budget.minAvailable }}
+  minAvailable: {{ .Values.budget.min }}
   selector:
     matchLabels:
       {{- include "prometheus-agent.selectorLabels" . | nindent 6 }}
